@@ -1,15 +1,16 @@
 import { ChainId } from '@uniswap/sdk'
 import { FortmaticConnector as FortmaticConnectorCore } from '@web3-react/fortmatic-connector'
+import {sepolia_CHAIN_ID} from "../constants/chain";
 
 export const OVERLAY_READY = 'OVERLAY_READY'
 
-type FormaticSupportedChains = Extract<ChainId, ChainId.MAINNET | ChainId.ROPSTEN | ChainId.RINKEBY | ChainId.KOVAN>
 
-const CHAIN_ID_NETWORK_ARGUMENT: { readonly [chainId in FormaticSupportedChains]: string | undefined } = {
+const CHAIN_ID_NETWORK_ARGUMENT: { readonly [chainId in any]: string | undefined } = {
   [ChainId.MAINNET]: undefined,
   [ChainId.ROPSTEN]: 'ropsten',
   [ChainId.RINKEBY]: 'rinkeby',
-  [ChainId.KOVAN]: 'kovan'
+  [ChainId.KOVAN]: 'kovan',
+  [sepolia_CHAIN_ID]: 'sepolia'
 }
 
 export class FortmaticConnector extends FortmaticConnectorCore {
@@ -18,7 +19,7 @@ export class FortmaticConnector extends FortmaticConnectorCore {
       const { default: Fortmatic } = await import('fortmatic')
       const { apiKey, chainId } = this as any
       if (chainId in CHAIN_ID_NETWORK_ARGUMENT) {
-        this.fortmatic = new Fortmatic(apiKey, CHAIN_ID_NETWORK_ARGUMENT[chainId as FormaticSupportedChains])
+        this.fortmatic = new Fortmatic(apiKey, CHAIN_ID_NETWORK_ARGUMENT[chainId ])
       } else {
         throw new Error(`Unsupported network ID: ${chainId}`)
       }

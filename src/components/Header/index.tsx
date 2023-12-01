@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk'
+import {ChainId, WETH} from '@uniswap/sdk'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { Text } from 'rebass'
@@ -20,6 +20,7 @@ import Menu from '../Menu'
 import Row, { RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
 import VersionSwitch from './VersionSwitch'
+import {sepolia_CHAIN_ID} from "../../constants/chain";
 
 const HeaderFrame = styled.div`
   display: flex;
@@ -126,12 +127,13 @@ const BalanceText = styled(Text)`
   `};
 `
 
-const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
+const NETWORK_LABELS: { [chainId in any]: string | null } = {
   [ChainId.MAINNET]: null,
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
   [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan'
+  [ChainId.KOVAN]: 'Kovan',
+  [sepolia_CHAIN_ID]: 'sepolia'
 }
 
 export default function Header() {

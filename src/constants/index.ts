@@ -2,8 +2,14 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import {sepolia_CHAIN_ID} from "./chain";
 
-export const ROUTER_ADDRESS = '0x15d1cfA4e71f9B8c7C1BFAeDE30fDE4cAe7Cd20C'
+
+{
+  let w = WETH as any
+  w[sepolia_CHAIN_ID] =new Token(sepolia_CHAIN_ID, '0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9', 18, 'WETH', 'WETH')
+}
+export const ROUTER_ADDRESS = '0xC532a74256D3Db42D0Bf7a0400fEFDbad7694008'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -17,13 +23,15 @@ export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f57172140
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 
-const WETH_ONLY: ChainTokenList = {
+export const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
   [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]]
+  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
+  [sepolia_CHAIN_ID]: [new Token(sepolia_CHAIN_ID, '0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9', 18, 'WETH', 'WETH')]
 }
+
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {

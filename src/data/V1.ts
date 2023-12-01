@@ -137,10 +137,7 @@ export function useV1Trade(
 }
 
 export function getTradeVersion(trade?: Trade): Version | undefined {
-  const isV1 = trade?.route?.pairs?.some(pair => pair instanceof MockV1Pair)
-  if (isV1) return Version.v1
-  if (isV1 === false) return Version.v2
-  return undefined
+  return  Version.v2
 }
 
 // returns the v1 exchange against which a trade should be executed

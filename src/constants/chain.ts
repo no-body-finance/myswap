@@ -1,0 +1,1 @@
+export const sepolia_CHAIN_ID = 11155111  as any
