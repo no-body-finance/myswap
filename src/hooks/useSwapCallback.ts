@@ -68,6 +68,7 @@ function useSwapCallArguments(
 
     const swapMethods = []
 
+    console.log('tradeVersion', tradeVersion,trade.tradeType,trade.inputAmount.currency.symbol,trade.outputAmount.currency.symbol)
     switch (tradeVersion) {
       case Version.v2:
         swapMethods.push(
@@ -100,6 +101,7 @@ function useSwapCallArguments(
         )
         break
     }
+    console.log(swapMethods)
     return swapMethods.map(parameters => ({ parameters, contract }))
   }, [account, allowedSlippage, chainId, deadline, library, recipient, trade, v1Exchange])
 }

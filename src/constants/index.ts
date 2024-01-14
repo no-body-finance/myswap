@@ -18,11 +18,8 @@ type ChainTokenList = {
 
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-
-export const TUSDT = new Token(sepolia_CHAIN_ID, '0x4Edc1fe7F0B8a24e6cEF5B201Badc1887c55b4Dc', 18, 'TUSDT', 'TUSDT')
-export const TTM = new Token(sepolia_CHAIN_ID, '0x1bbf17ecB9513d66a6020Ffc1222c3B77b4Bed57', 18, 'TTM', 'To the Moon')
-export const TTM_V2 = new Token(sepolia_CHAIN_ID, '0x1B9B9A1e7b825B1c140a9D7f975a8EECFc8a8509', 18, 'TTM V2', 'To the Moon V2')
+export const mUSDT = new Token(sepolia_CHAIN_ID, '0x89cBccEdDF07A14aFf90eF5D3A7D5BEf9e33Cb6b', 18, 'mUSDT', 'mUSDT')
+export const mBANA = new Token(sepolia_CHAIN_ID, '0xe95b3Dc78c0881dEa17A69BaFC6cFeB8d891e9DE', 18, 'mBANA', 'mBANA')
 
 export const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
@@ -38,7 +35,7 @@ export const WETH_ONLY: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET]],
-  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],TUSDT,TTM,TTM_V2]
+  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],mUSDT,mBANA]
 }
 
 /**
@@ -53,13 +50,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],TUSDT,TTM,TTM_V2]
+  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],mUSDT,mBANA]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],TUSDT,TTM,TTM_V2]
+  [sepolia_CHAIN_ID]: [...WETH_ONLY[sepolia_CHAIN_ID],mUSDT,mBANA]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
